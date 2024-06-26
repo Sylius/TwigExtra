@@ -19,5 +19,10 @@ final class TwigExtraExtension extends Extension
         );
 
         $loader->load('services.php');
+
+        $configuration = $this->getConfiguration([], $container);
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('sylius_twig_extra.twig_ux.anonymous_component_template_prefixes', $config['twig_ux']['anonymous_component_template_prefixes'] ?? []);
     }
 }

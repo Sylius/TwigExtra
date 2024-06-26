@@ -7,6 +7,7 @@ namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 use Sylius\TwigExtra\Twig\Extension\SortByExtension;
 use Sylius\TwigExtra\Twig\Extension\TestFormAttributeExtension;
 use Sylius\TwigExtra\Twig\Extension\TestHtmlAttributeExtension;
+use Sylius\TwigExtra\Twig\Ux\ComponentTemplateFinder;
 
 return function (ContainerConfigurator $configurator): void {
     $services = $configurator->services();
@@ -29,5 +30,13 @@ return function (ContainerConfigurator $configurator): void {
             param('kernel.debug'),
         ])
         ->tag(name: 'twig.extension')
+    ;
+
+    $services->set('sylius_twig_extra.twig.ux.component_template_finder', ComponentTemplateFinder::class)
+        ->args([
+            service('.inner'),
+            service('twig.loader.native_filesystem'),
+            param('sylius_twig_extra.twig_ux.anonymous_component_template_prefixes'),
+        ])
     ;
 };
