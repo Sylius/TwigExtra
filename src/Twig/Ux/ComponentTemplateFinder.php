@@ -31,7 +31,7 @@ final class ComponentTemplateFinder implements ComponentTemplateFinderInterface
 
     private function getTemplatePath(string $name, string $prefixName, string $prefixTemplatePath): ?string
     {
-        $templatePath =  sprintf('%s/%s.html.twig', $prefixTemplatePath, $this->normalizeName($name, $prefixName));
+        $templatePath = sprintf('%s/%s.html.twig', $prefixTemplatePath, $this->normalizeName($name, $prefixName));
 
         if ($this->loader->exists($templatePath)) {
             return $templatePath;
