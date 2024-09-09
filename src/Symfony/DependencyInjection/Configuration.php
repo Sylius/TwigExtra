@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Sylius\TwigExtra\Symfony\DependencyInjection;
 
-use Sylius\TwigHooks\Hookable\DisabledHookable;
-use Sylius\TwigHooks\Hookable\HookableComponent;
-use Sylius\TwigHooks\Hookable\HookableTemplate;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -32,6 +29,17 @@ final class Configuration implements ConfigurationInterface
                     ->children()
                         ->arrayNode('anonymous_component_template_prefixes')
                             ->useAttributeAsKey('prefix_name')
+                                ->validate()
+                                    ->always(static function ($values): array {
+                                        foreach ($values as $path) {
+                                            if (!is_string($path)) {
+                                                throw new \InvalidArgumentException(sprintf('Path must be a string. "%s" given.', get_debug_type($path)));
+                                            }
+                                        }
+
+                                        return $values;
+                                    })
+                                ->end()
                             ->scalarPrototype()->end()
                         ->end()
                     ->end()
