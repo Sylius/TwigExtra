@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Sylius package.
+ *
+ * (c) Sylius Sp. z o.o.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Tests\Sylius\TwigExtra\Unit\Twig\Extension;
@@ -122,8 +131,8 @@ final class SortByExtensionTest extends TestCase
     public function testItSortsAnArrayOfObjectsByANestedProperty(): void
     {
         $firstData = (object) ['data' => (object) ['number' => 3]];
-        $secondData = (object) ['data' =>  (object) ['number' => 5]];
-        $thirdData = (object) ['data' =>  (object) ['number' => 1]];
+        $secondData = (object) ['data' => (object) ['number' => 5]];
+        $thirdData = (object) ['data' => (object) ['number' => 1]];
 
         $arrayBeforeSorting = [
             $firstData,
@@ -141,8 +150,8 @@ final class SortByExtensionTest extends TestCase
     public function testItSortsAnArrayOfArraysByANestedProperty(): void
     {
         $firstData = ['data' => ['number' => 3]];
-        $secondData = ['data' =>  ['number' => 5]];
-        $thirdData = ['data' =>  ['number' => 1]];
+        $secondData = ['data' => ['number' => 5]];
+        $thirdData = ['data' => ['number' => 1]];
 
         $arrayBeforeSorting = [
             $firstData,
