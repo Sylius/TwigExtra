@@ -28,6 +28,7 @@ final class TwigExtraExtensionTest extends AbstractExtensionTestCase
         $this->load();
 
         $this->assertContainerBuilderHasService('sylius_twig_extra.twig.ux.component_template_finder', ComponentTemplateFinder::class);
+        $this->assertContainerBuilderServiceDecoration('sylius_twig_extra.twig.ux.component_template_finder', 'ux.twig_component.component_template_finder');
     }
 
     public function testItRegistersTwigUxAnonymousComponentTemplatePrefixesParameter(): void
