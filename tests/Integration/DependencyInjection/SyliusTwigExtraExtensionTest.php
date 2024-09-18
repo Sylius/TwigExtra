@@ -19,7 +19,7 @@ use Sylius\TwigExtra\Symfony\DependencyInjection\Configuration;
 use Sylius\TwigExtra\Symfony\DependencyInjection\SyliusTwigExtraExtension;
 use Sylius\TwigExtra\Twig\Ux\ComponentTemplateFinder;
 
-final class TwigExtraExtensionTest extends AbstractExtensionTestCase
+final class SyliusTwigExtraExtensionTest extends AbstractExtensionTestCase
 {
     use ConfigurationTestCaseTrait;
 
