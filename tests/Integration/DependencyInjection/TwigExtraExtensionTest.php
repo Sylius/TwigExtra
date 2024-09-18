@@ -16,7 +16,7 @@ namespace Tests\Sylius\TwigExtra\Integration\DependencyInjection;
 use Matthias\SymfonyConfigTest\PhpUnit\ConfigurationTestCaseTrait;
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Sylius\TwigExtra\Symfony\DependencyInjection\Configuration;
-use Sylius\TwigExtra\Symfony\DependencyInjection\TwigExtraExtension;
+use Sylius\TwigExtra\Symfony\DependencyInjection\SyliusTwigExtraExtension;
 use Sylius\TwigExtra\Twig\Ux\ComponentTemplateFinder;
 
 final class TwigExtraExtensionTest extends AbstractExtensionTestCase
@@ -65,7 +65,7 @@ final class TwigExtraExtensionTest extends AbstractExtensionTestCase
     protected function getContainerExtensions(): array
     {
         return [
-            new TwigExtraExtension(),
+            new SyliusTwigExtraExtension(),
         ];
     }
 

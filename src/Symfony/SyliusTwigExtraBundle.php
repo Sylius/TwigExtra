@@ -15,6 +15,6 @@ namespace Sylius\TwigExtra\Symfony;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-final class TwigExtraBundle extends Bundle
+final class SyliusTwigExtraBundle extends Bundle
 {
 }
