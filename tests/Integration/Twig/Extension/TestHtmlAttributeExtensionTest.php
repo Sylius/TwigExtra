@@ -11,12 +11,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Sylius\TwigExtra\Functional\Twig\Extension;
+namespace Tests\Sylius\TwigExtra\Integration\Twig\Extension;
 
-use Sylius\TwigExtra\Twig\Extension\RouteExistsExtension;
+use Sylius\TwigExtra\Twig\Extension\TestHtmlAttributeExtension;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-final class RouteExistsExtensionTest extends KernelTestCase
+final class TestHtmlAttributeExtensionTest extends KernelTestCase
 {
     public function testTheContainerContainsTheService(): void
     {
@@ -24,7 +24,7 @@ final class RouteExistsExtensionTest extends KernelTestCase
 
         $container = $this->getContainer();
 
-        $this->assertTrue($container->has('sylius_twig_extra.twig.extension.route_exists'));
-        $this->assertInstanceOf(RouteExistsExtension::class, $container->get('sylius_twig_extra.twig.extension.route_exists'));
+        $this->assertTrue($container->has('sylius_twig_extra.twig.extension.test_html_attribute'));
+        $this->assertInstanceOf(TestHtmlAttributeExtension::class, $container->get('sylius_twig_extra.twig.extension.test_html_attribute'));
     }
 }
