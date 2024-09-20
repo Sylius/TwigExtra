@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Sylius\TwigExtra\Functional\Twig\Extension;
+namespace Tests\Sylius\TwigExtra\Integration\Twig\Extension;
 
 use Sylius\TwigExtra\Twig\Extension\SortByExtension;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
