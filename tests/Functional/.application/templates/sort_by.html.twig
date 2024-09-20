@@ -1,0 +1,17 @@
+{% set data = [
+    {'number': 42},
+    {'number': 5},
+    {'number': 77},
+] %}
+
+<div data-test-sort-by-asc>
+    {% for row in data|sort_by('[number]') %}
+        {{ row.number }}
+    {% endfor %}
+</div>
+
+<div data-test-sort-by-desc>
+    {% for row in data|sort_by('[number]', 'DESC') %}
+        {{ row.number }}
+    {% endfor %}
+</div>
