@@ -13,9 +13,7 @@ declare(strict_types=1);
 
 use TestApplication\Sylius\TwigExtra\Kernel;
 
-if (file_exists(dirname(__DIR__) . '/vendor/autoload_runtime.php')) {
-    require_once dirname(__DIR__) . '/vendor/autoload_runtime.php';
-} elseif (file_exists(dirname(__DIR__, 4) . '/vendor/autoload_runtime.php')) {
+if (file_exists(dirname(__DIR__, 4) . '/vendor/autoload_runtime.php')) {
     require_once dirname(__DIR__, 4) . '/vendor/autoload_runtime.php';
 } else {
     require_once dirname(__DIR__, 6) . '/vendor/autoload_runtime.php';
