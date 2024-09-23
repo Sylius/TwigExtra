@@ -1,0 +1,7 @@
+<div data-test-route-exists>
+    {{ sylius_route_exists('route_exists') ? 'yes' : 'no' }}
+</div>
+
+<div data-test-route-not-exists>
+    {{ sylius_route_exists('nowhere') ? 'yes' : 'no' }}
+</div>
