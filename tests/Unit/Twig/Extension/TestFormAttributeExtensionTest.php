@@ -25,14 +25,21 @@ final class TestFormAttributeExtensionTest extends TestCase
         $this->assertInstanceOf(ExtensionInterface::class, new TestFormAttributeExtension('dev', false));
     }
 
-    public function testItContainsATwigFunctionForFormAttributes(): void
+    public function testItContainsATwigFunctionForFormAttribute(): void
     {
         $twigFunction = (new TestFormAttributeExtension('dev', false))->getFunctions()[0];
 
         $this->assertEquals('sylius_test_form_attribute', $twigFunction->getName());
     }
 
-    public function testItsTwigFunctionAddsADataTestAttributeForTestEnvironment(): void
+    public function testItContainsATwigFunctionForFormAttributes(): void
+    {
+        $twigFunction = (new TestFormAttributeExtension('dev', false))->getFunctions()[1];
+
+        $this->assertEquals('sylius_test_form_attributes', $twigFunction->getName());
+    }
+
+    public function testItsTestFormAttributeTwigFunctionAddsADataTestAttributeForTestEnvironment(): void
     {
         $twigFunction = (new TestFormAttributeExtension('test', false))->getFunctions()[0];
         $callable = $twigFunction->getCallable();
@@ -41,7 +48,22 @@ final class TestFormAttributeExtensionTest extends TestCase
         $this->assertEquals(['attr' => ['data-test-foo' => '']], ($callable)('foo'));
     }
 
-    public function testItsTwigFunctionAddsADataTestAttributeWithValueForTestEnvironment(): void
+    public function testItsTestFormAttributesTwigFunctionAddsDataTestAttributesForTestEnvironment(): void
+    {
+        $twigFunction = (new TestFormAttributeExtension('test', false))->getFunctions()[1];
+        $callable = $twigFunction->getCallable();
+
+        $this->assertIsCallable($callable);
+        $this->assertEquals(['attr' => [
+            'data-test-foo' => 'bar',
+            'data-test-title' => 'Lord Of The Rings',
+        ]], ($callable)([
+            'foo' => 'bar',
+            'title' => 'Lord Of The Rings',
+        ]));
+    }
+
+    public function testItsTestFormAttributeTwigFunctionAddsADataTestAttributeWithValueForTestEnvironment(): void
     {
         $twigFunction = (new TestFormAttributeExtension('test', false))->getFunctions()[0];
         $callable = $twigFunction->getCallable();
@@ -50,13 +72,37 @@ final class TestFormAttributeExtensionTest extends TestCase
         $this->assertEquals(['attr' => ['data-test-foo' => 'fighters']], ($callable)('foo', 'fighters'));
     }
 
-    public function testItsTwigFunctionDoesNothingForProdEnvironment(): void
+    public function testItsTestFormAttributesTwigFunctionAddsDataTestAttributesWithValueForTestEnvironment(): void
+    {
+        $twigFunction = (new TestFormAttributeExtension('test', false))->getFunctions()[1];
+        $callable = $twigFunction->getCallable();
+
+        $this->assertIsCallable($callable);
+        $this->assertEquals(['attr' => [
+            'data-test-foo' => 'bar',
+            'data-test-title' => 'Lord Of The Rings',
+        ]], ($callable)([
+            'foo' => 'bar',
+            'title' => 'Lord Of The Rings',
+        ]));
+    }
+
+    public function testItsTestFormAttributeTwigFunctionDoesNothingForProdEnvironment(): void
     {
         $twigFunction = (new TestFormAttributeExtension('prod', false))->getFunctions()[0];
         $callable = $twigFunction->getCallable();
 
         $this->assertIsCallable($callable);
         $this->assertEquals([], ($callable)('foo'));
+    }
+
+    public function testItsTestFormAttributesTwigFunctionDoesNothingForProdEnvironment(): void
+    {
+        $twigFunction = (new TestFormAttributeExtension('prod', false))->getFunctions()[1];
+        $callable = $twigFunction->getCallable();
+
+        $this->assertIsCallable($callable);
+        $this->assertEquals([], ($callable)(['foo' => 'bar']));
     }
 
     public function testItsTwigFunctionAddsADataTestAttributeForProdEnvironmentIfDebugIsEnabled(): void
@@ -68,9 +114,31 @@ final class TestFormAttributeExtensionTest extends TestCase
         $this->assertEquals(['attr' => ['data-test-foo' => '']], ($callable)('foo'));
     }
 
-    public function testItsTwigFunctionIsSafeForHtml(): void
+    public function testItsTwigFunctionAddsADataTestAttributesForProdEnvironmentIfDebugIsEnabled(): void
+    {
+        $twigFunction = (new TestFormAttributeExtension('test', true))->getFunctions()[1];
+        $callable = $twigFunction->getCallable();
+
+        $this->assertIsCallable($callable);
+        $this->assertEquals(['attr' => [
+            'data-test-foo' => 'bar',
+            'data-test-title' => 'Lord Of The Rings',
+        ]], ($callable)([
+            'foo' => 'bar',
+            'title' => 'Lord Of The Rings',
+        ]));
+    }
+
+    public function testItsTestFormAttributeTwigFunctionIsSafeForHtml(): void
     {
         $twigFunction = (new TestFormAttributeExtension('dev', false))->getFunctions()[0];
+
+        $this->assertEquals(['html'], $twigFunction->getSafe(new Node()));
+    }
+
+    public function testItsTestFormAttributesTwigFunctionIsSafeForHtml(): void
+    {
+        $twigFunction = (new TestFormAttributeExtension('dev', false))->getFunctions()[1];
 
         $this->assertEquals(['html'], $twigFunction->getSafe(new Node()));
     }
