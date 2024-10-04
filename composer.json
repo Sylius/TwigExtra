@@ -1,5 +1,6 @@
 {
     "name": "sylius/twig-extra",
+    "description": "Additional Twig extensions for your Symfony projects",
     "type": "library",
     "license": "MIT",
     "authors": [
