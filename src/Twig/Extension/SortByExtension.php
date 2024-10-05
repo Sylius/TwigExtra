@@ -23,6 +23,7 @@ class SortByExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
+            new TwigFilter('sylius_sort_by', [$this, 'sortBy']),
             new TwigFilter('sort_by', [$this, 'sortBy']),
         ];
     }
