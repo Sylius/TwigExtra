@@ -5,13 +5,13 @@
 ] %}
 
 <div data-test-sort-by-asc>
-    {% for row in data|sort_by('[number]') %}
+    {% for row in data|sylius_sort_by('[number]') %}
         {{ row.number }}
     {% endfor %}
 </div>
 
 <div data-test-sort-by-desc>
-    {% for row in data|sort_by('[number]', 'DESC') %}
+    {% for row in data|sylius_sort_by('[number]', 'DESC') %}
         {{ row.number }}
     {% endfor %}
 </div>
